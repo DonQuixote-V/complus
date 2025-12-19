@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ถาม AI | Complus</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body {
+    margin:0;
+    background:#0F0D0D;
+    color:white;
+    font-family:"VCR OSD Mono";
+}
+
+/* ====== กล่องแชท ====== */
+.chat-wrapper {
+    width:80%;
+    height:500px;
+    margin:40px auto;
+    background:#111;
+    border-radius:16px;
+    border:1px solid #222;
+    display:flex;
+    flex-direction:column;
+}
+
+/* พื้นที่ข้อความ */
+.chat-box {
+    flex:1;
+    padding:20px;
+    overflow-y:auto;
+}
+
+/* ข้อความ */
+.msg {
+    max-width:70%;
+    padding:14px;
+    border-radius:14px;
+    margin-bottom:12px;
+    line-height:1.6;
+}
+
+/* ผู้ใช้ */
+.user {
+    background:#0d6efd;
+    align-self:flex-end;
+    text-align:right;
+}
+
+/* AI */
+.ai {
+    background:#1a1a1a;
+    border:1px solid #333;
+    align-self:flex-start;
+}
+
+/* ====== ช่องพิมพ์ ====== */
+.chat-input {
+    display:flex;
+    border-top:1px solid #222;
+}
+
+.chat-input input {
+    flex:1;
+    padding:16px;
+    font-size:18px;
+    background:#1a1a1a;
+    color:white;
+    border:none;
+    outline:none;
+}
+
+.chat-input button {
+    padding:0 30px;
+    background:#0d6efd;
+    border:none;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- ===== Header / Banner ===== -->
+<table width="1541" border="0">
+<tr>
+<td colspan="7" bgcolor="#666" align="center">
+<marquee>Mywebsite By Ruti</marquee>
+</td>
+</tr>
+
+<tr>
+<td colspan="7">
+<img src="img/ban.jpg" width="1536" height="300">
+</td>
+</tr>
+
+<tr bgcolor="#000">
+<td>&nbsp;</td>
+<td align="center"><a href="Analyze.html">วิเคราะห์สเปค</a></td>
+<td align="center"><a href="Gametest.html">วิเคราะห์เกม</a></td>
+<td align="center"><b>ถาม AI</b></td>
+<td align="center">เปรียบเทียบ</td>
+<td align="center">โปรไฟล์</td>
+<td align="center">ล็อคอิน</td>
+</tr>
+</table>
+
+<!-- ===== ChatGPT Style ===== -->
+<div class="chat-wrapper">
+    <div id="chatBox" class="chat-box">
+        <div class="msg ai">
+            สวัสดี 👋 ผมคือ Complus AI  
+            ถามเรื่องคอม สเปค หรือเกมได้เลย
+        </div>
+    </div>
+
+    <div class="chat-input">
+        <input type="text" id="userInput"
+               placeholder="พิมพ์คำถามของคุณที่นี่..."
+               onkeydown="if(event.key==='Enter') sendMsg()">
+        <button onclick="sendMsg()">ส่ง</button>
+    </div>
+</div>
+<script src="js/askAI.js"></script>
+</body>
+</html>

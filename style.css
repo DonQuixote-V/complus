@@ -1,0 +1,138 @@
+/* รีเซ็ตเบื้องต้น */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* ธีมสีหลัก */
+body{
+    background: #0b0f14;      /* ดำอมฟ้า */
+    color: #d8ecff;           /* ฟ้านวล */
+}
+
+/* Container */
+.container{
+    width: min(1200px, 95%);
+    margin: auto;
+}
+
+/* ===========================
+        🔷 HERO HEADER
+   =========================== */
+.hero-banner{
+	width: 100vw;       /* บังคับเต็มจอจริง */
+	height: 260px;
+	background-image: url(img/ban.jpg);
+	background-size: 100% auto;   /* ให้กินเต็มด้านกว้างแน่นอน */
+	background-position: top center;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding-right: 40px;
+}
+
+.banner-text h1{
+    color: #d2eeff;
+    font-size: 32px;
+    font-weight: 600;
+    text-shadow: 0px 0px 8px rgba(0,255,255,0.3);
+}
+
+
+
+/* ===========================
+          🔷 NAVBAR
+   =========================== */
+.navbar{
+    width: 100%;
+    background: #0d141c;
+    border-bottom: 1px solid #1e3547;
+    padding: 12px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-inner{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo{
+    color: #52e7ff;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* Search box */
+.search-box{
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.search-box input{
+    padding: 10px 14px;
+    border-radius: 30px;
+    border: 1px solid #2b465a;
+    background: #0a1118;
+    color: #d8ecff;
+    width: 250px;
+}
+
+.search-box button{
+    padding: 10px 16px;
+    border: none;
+    background: #19c7ff;
+    color: #000;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.search-box button:hover{
+    background: #3ddaff;
+}
+
+/* Menu */
+.menu{
+    display: flex;
+    gap: 20px;
+}
+
+.menu a{
+    color: #9bdfff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.menu a:hover{
+    background: rgba(0,169,255,0.22);
+}
+
+/* ===========================
+           CONTENT
+   =========================== */
+.content{
+    padding: 40px 0;
+}
+
+.content h2{
+    margin-bottom: 10px;
+    font-size: 26px;
+    color: #8ddcff;
+}
+
+.content p{
+    font-size: 16px;
+    color: #aacce8;
+}

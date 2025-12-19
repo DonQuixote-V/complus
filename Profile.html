@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ล็อกอิน | Complus</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body{
+    margin:0;
+    background:#0F0D0D;
+    color:white;
+    font-family:"VCR OSD Mono";
+}
+
+/* กล่องล็อกอิน */
+.login-box{
+    width:420px;
+    margin:120px auto;
+    background:#111;
+    padding:40px;
+    border-radius:18px;
+    text-align:center;
+    border:1px solid #222;
+}
+
+.login-box h1{
+    margin-bottom:10px;
+    font-size:38px;
+}
+
+.login-box p{
+    color:#bbb;
+    margin-bottom:25px;
+}
+
+/* input */
+.login-box input{
+    width:100%;
+    padding:14px;
+    font-size:18px;
+    margin-bottom:20px;
+    border-radius:14px;
+    border:2px solid #0b3f66;
+    background:#1a1a1a;
+    color:white;
+    outline:none;
+}
+
+.login-box input:focus{
+    border-color:#0d6efd;
+    box-shadow:0 0 10px rgba(13,110,253,0.5);
+}
+</style>
+
+<script>
+function login(){
+    let name = document.getElementById("username").value.trim();
+    if(name === ""){
+        alert("กรุณาใส่ชื่อผู้ใช้");
+        return;
+    }
+
+    // บันทึกชื่อ
+    localStorage.setItem("username", name);
+
+    // ไปหน้าโปรไฟล์
+    window.location.href = "Profile.html";
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="login-box">
+    <h1>Complus</h1>
+    <p>เข้าสู่ระบบเพื่อใช้งานเต็มรูปแบบ</p>
+
+    <input type="text" id="username" placeholder="ชื่อผู้ใช้">
+
+    <button class="gold-btn" onclick="login()">เข้าสู่ระบบ</button>
+
+    <p style="margin-top:20px;color:#666;">
+        ยังไม่สมัคร? ใช้งานแบบ Guest ได้
+    </p>
+</div>
+
+</body>
+</html>

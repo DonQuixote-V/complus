@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>complus by Rult</title>
+
+<!-- เรียกไฟล์ CSS -->
+<link rel="stylesheet" href="css/style.css" />
+
+<style type="text/css">
+body,td,th {
+	color: #FFFFFF;
+}
+body {
+	background-color: #0F0D0D;
+}
+.result-box{
+    background:#111;
+    width:70%;
+    padding:25px;
+    border-radius:12px;
+    margin-top:40px;
+}
+.result-title{
+    font-size:32px;
+    margin-bottom:10px;
+}
+.line{
+    width:60%;
+    border:1px solid #444;
+}
+.score-box{
+    margin-top:15px;
+}
+.score-text{
+    font-size:22px;
+}
+.score-number{
+    font-size:28px;
+    color:#FFD700;
+}
+.chart-area{
+    margin-top:25px;
+    padding:20px;
+    border:1px dashed #666;
+}
+.chart-text{
+    font-size:20px;
+    color:#888;
+}
+</style>
+
+<!-- โหลดระบบคำนวณ -->
+<script src="js/analyzeEngine.js"></script>
+
+</head>
+
+<body>
+
+<table width="1541" border="1">
+  <tr bgcolor="#333333">
+    <th height="37" colspan="7" bgcolor="#666666" scope="col">
+      <marquee behavior="alternate">Mywebsite By Ruti</marquee>
+    </th>
+  </tr>
+
+  <!-- แบนเนอร์ -->
+  <tr>
+    <th height="209" colspan="7" align="left" scope="col"> <a href="index.html"><img src="img/ban.jpg" width="1536" height="300" /></a>
+    </th>
+  </tr>
+
+  <!-- Navbar -->
+  <tr>
+    <td width="13" bgcolor="#000000">&nbsp;</td>
+    <td width="393" align="center" bgcolor="#000000">วิเคราะห์สเปคคอม</td>
+    <td width="264" align="center" bgcolor="#000000">วิเคราะห์เกม</td>
+    <td width="170" align="center" bgcolor="#000000">ถาม AI</td>
+    <td width="318" align="center" bgcolor="#000000">เปรียบเทียบสเปค</td>
+    <td width="174" align="center" bgcolor="#000000">โปรไฟล์</td>
+    <td width="168" align="center" bgcolor="#000000">ล็อคอิน</td>
+  </tr>
+
+  <!-- หัวข้อ -->
+  <tr>
+    <td colspan="7" align="center" style="font-size:40px"  bgcolor="#0F0D0D">
+        วิเคราะห์สเปคคอมของคุณ<br />
+        กรอกข้อมูลสเปค แล้วระบบจะประเมินให้โดยอัตโนมัติ
+    </td>
+  </tr>
+
+  <!-- ฟอร์ม -->
+  <tr>
+    <td colspan="7" align="center" valign="top" bgcolor="#0F0D0D">
+        <br /><br />
+
+        <select id="cpu" class="input-box">
+            <option value="">เลือก CPU</option>
+            <option value="60">Intel i5-12400F</option>
+            <option value="40">Intel i7-8700</option>
+            <option value="55">Ryzen 5 5600</option>
+        </select>
+
+        <select id="gpu" class="input-box">
+            <option value="">เลือก GPU</option>
+            <option value="35">GTX 1650</option>
+            <option value="70">RTX 3060</option>
+            <option value="65">RX 6600</option>
+        </select>
+
+        <br /><br />
+
+        <input id="ram" type="number" class="input-box" placeholder="RAM (GB)" />
+
+        <br /><br />
+
+        <select id="storage" class="input-box">
+            <option value="">Storage</option>
+            <option value="25">SSD</option>
+            <option value="10">HDD</option>
+        </select>
+
+        <select id="resolution" class="input-box">
+            <option value="1080">1080p</option>
+            <option value="1440">1440p</option>
+            <option value="2160">4K</option>
+        </select>
+
+        <br /><br />
+
+        <select id="game" class="input-box">
+            <option value="">เลือกเกม</option>
+            <option value="valorant">Valorant</option>
+            <option value="gta5">GTA V</option>
+            <option value="cyberpunk">Cyberpunk 2077</option>
+        </select>
+
+        <br /><br /><br />
+    </td>
+  </tr>
+
+  <!-- ปุ่ม -->
+  <tr>
+    <td colspan="7" align="center" bgcolor="#0F0D0D">
+        <button class="gold-btn" onclick="analyzeALL()">เริ่มวิเคราะห์สเปก</button>
+    </td>
+  </tr>
+
+  <!-- ?? กล่องผลลัพธ์ -->
+  <tr>
+    <td colspan="7" align="center" bgcolor="#0F0D0D">
+        <div id="result" class="result-box">
+            <h2 class="result-title">ผลการวิเคราะห์จะอยู่ที่นี่</h2>
+        </div>
+    </td>
+  </tr>
+
+  <!-- Footer -->
+  <tr>
+    <td height="44" colspan="7" bgcolor="#000000">
+      <marquee behavior="alternate">จัดทำโดย นายต</marquee>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

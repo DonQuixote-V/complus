@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>วิเคราะห์เกม | Complus</title>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body { background:#0F0D0D; color:white; }
+.container{
+    text-align:center;
+    margin-top:40px;
+}
+.game-box{
+    background:#111;
+    padding:25px;
+    width:70%;
+    margin:auto;
+    border-radius:12px;
+}
+h1{ font-size:38px; }
+label{ font-size:20px; }
+</style>
+
+<script src="js/gameTestEngine.js"></script>
+
+</head>
+
+<body>
+
+<!-- Navbar เหมือนเดิม -->
+<table width="1541" border="1">
+<tr><td colspan="7" bgcolor="#666" align="center">
+<marquee behavior="alternate">Mywebsite By Ruti</marquee>
+</td></tr>
+
+<tr>
+<td colspan="7" align="center"><a href="index.html"><img src="img/ban.jpg" width="1536" height="300"></a>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="#000000">&nbsp;</td>
+<td bgcolor="#000000" align="center">วิเคราะห์สเปคคอม</td>
+<td bgcolor="#000000" align="center">วิเคราะห์เกม</td>
+<td bgcolor="#000000" align="center">ถาม AI</td>
+<td bgcolor="#000000" align="center">เปรียบเทียบสเปค</td>
+<td bgcolor="#000000" align="center">โปรไฟล์</td>
+<td bgcolor="#000000" align="center">ล็อคอิน</td>
+</tr>
+
+<!-- เนื้อหา -->
+<tr>
+<td colspan="7" bgcolor="#0F0D0D" align="center">
+
+<div class="container">
+<h1>วิเคราะห์ประสิทธิภาพเกม</h1>
+<p>เลือกเกมและสเปคที่ต้องการทดสอบ</p>
+
+<div class="game-box">
+
+<!-- เลือกเกม -->
+<select id="game" class="input-box">
+    <option value="">เลือกเกม</option>
+    <option value="gtav">GTA V</option>
+    <option value="valorant">Valorant</option>
+    <option value="pubg">PUBG</option>
+    <option value="cyberpunk">Cyberpunk 2077</option>
+    <option value="rdr2">Red Dead Redemption 2</option>
+</select>
+
+<br><br>
+
+<!-- เลือกกราฟิก -->
+<select id="graphic" class="input-box">
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+    <option value="ultra">Ultra</option>
+</select>
+
+<br><br>
+
+<!-- ใส่สเปค -->
+<input id="cpu" class="input-box" type="text" placeholder="คะแนน CPU (เช่น 60)">
+<input id="gpu" class="input-box" type="text" placeholder="คะแนน GPU (เช่น 70)">
+<input id="ram" class="input-box" type="number" placeholder="RAM (GB)">
+<select id="resolution" class="input-box">
+    <option value="1080">1080p</option>
+    <option value="1440">1440p</option>
+    <option value="2160">4K</option>
+</select>
+
+<br><br>
+
+<button class="gold-btn" onclick="testGame()">วิเคราะห์เกม</button>
+
+</div>
+
+<br><br>
+
+<!-- กล่องผลลัพธ์ -->
+<div id="gameResult" class="game-box">
+    <h2>ผลวิเคราะห์เกมจะอยู่ที่นี่</h2>
+</div>
+
+</div>
+
+</td>
+</tr>
+
+<tr>
+<td colspan="7" bgcolor="#000000" align="center">
+<marquee behavior="alternate">จัดทำโดย นายต</marquee>
+</td>
+</tr>
+
+</table>
+
+</body>
+</html>
