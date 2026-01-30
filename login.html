@@ -1,162 +1,162 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<style type="text/css">
-a:link {
-	color: #FFFFFF;
-	text-decoration: none;
-}
-</style>
+<!DOCTYPE html>
+<html lang="th">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-874" />
-<title>complus by Rult</title>
+<meta charset="UTF-8">
+<title>Login | Complus</title>
 
-<!-- CSS ¿“¬πÕ° -->
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-body,td,th {
-    color: #FFF;
-    font-family: "VCR OSD Mono";
-}
-body {
-    background-color: #0F0D0D;
-}
-
-/* ª√—∫¢ÈÕ§«“¡À≈—°„ÀÈ¥Ÿ «¬¢÷Èπ */
-.big-title {
-    font-size: 95px;
-    font-weight: bold;
-    margin: 0;
-    letter-spacing: 3px;
+body{
+    margin:0;
+    background:#0F0D0D;
+    color:white;
+    font-family:"VCR OSD Mono";
 }
 
-.sub-title {
-    font-size: 32px;
-    margin-top: 20px;
-    color: #DDDDDD;
+/* ‡∏Å‡∏•‡πà‡∏≠‡∏á Login */
+.login-wrapper{
+    width:100%;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-/* ª√—∫ container ¢Õßø’‡®Õ√Ï„ÀÈÕ¬ŸË°≈“ß */
-.card-container {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 40px;
+.login-box{
+    width:420px;
+    background:#111;
+    padding:40px;
+    border-radius:18px;
+    border:1px solid #222;
+    text-align:center;
 }
 
-/* °“√Ï¥ø’‡®Õ√Ï */
-.feature-card {
-    background: #111;
-    width: 280px;
-    padding: 25px;
-    border-radius: 14px;
-    text-align: center;
-    border: 1px solid #333;
+/* ‡∏´‡∏±‡∏ß‡∏Ç‡πâ‡∏≠ */
+.login-box h1{
+    font-size:42px;
+    margin-bottom:10px;
 }
 
-.feature-card h3 {
-    font-size: 28px;
-    margin-bottom: 10px;
+.login-box p{
+    color:#bbb;
+    margin-bottom:25px;
 }
 
-.feature-card p {
-    font-size: 18px;
-    color: #CCCCCC;
+/* input */
+.login-box input,
+.login-box select{
+    width:100%;
+    padding:14px;
+    font-size:18px;
+    margin-bottom:18px;
+    border-radius:14px;
+    border:2px solid #0b3f66;
+    background:#1a1a1a;
+    color:white;
+    outline:none;
 }
 
-.icon {
-    width: 72px;
-    margin-bottom: 15px;
+.login-box input:focus,
+.login-box select:focus{
+    border-color:#0d6efd;
+    box-shadow:0 0 10px rgba(13,110,253,0.5);
+}
+
+/* ‡∏õ‡∏∏‡πà‡∏° */
+.login-box button{
+    width:100%;
+    margin-top:10px;
+}
+
+/* ‡∏•‡∏¥‡∏á‡∏Å‡πå */
+.login-link{
+    margin-top:20px;
+    font-size:16px;
+    color:#aaa;
+}
+.login-link a{
+    color:#00e1ff;
+    text-decoration:none;
 }
 </style>
+
+<script>
+function login(){
+    let name = document.getElementById("fullname").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let age = document.getElementById("age").value;
+    let remember = document.getElementById("rememberMe").checked;
+
+    if(name === "" || phone === "" || age === ""){
+        alert("‡∏Å‡∏£‡∏∏‡∏ì‡∏≤‡∏Å‡∏£‡∏≠‡∏Å‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•‡πÉ‡∏´‡πâ‡∏Ñ‡∏£‡∏ö");
+        return;
+    }
+
+    const userData = {
+        username: name,
+        phone: phone,
+        age: age,
+        role: "User",
+        loginAt: new Date().toLocaleString("th-TH")
+    };
+
+    if(remember){
+        // ‡∏à‡∏≥‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•‡∏ñ‡∏≤‡∏ß‡∏£
+        localStorage.setItem("userData", JSON.stringify(userData));
+        localStorage.setItem("username", name);
+        localStorage.setItem("rememberMe", "true");
+    }else{
+        // ‡∏à‡∏≥‡πÄ‡∏â‡∏û‡∏≤‡∏∞‡∏£‡∏≠‡∏ö‡∏ô‡∏µ‡πâ
+        sessionStorage.setItem("userData", JSON.stringify(userData));
+        sessionStorage.setItem("username", name);
+        localStorage.removeItem("rememberMe");
+    }
+
+    window.location.href = "Profile.html";
+}
+</script>
+
 
 </head>
 
 <body>
 
-<table width="1541" height="953" border="0">
+<div class="login-wrapper">
 
-  <!-- TOP BAR -->
-  <tr bgcolor="#333333">
-    <th height="37" colspan="7" bgcolor="#666666">
-        <marquee behavior="alternate">Mywebsite By Ruti</marquee>
-    </th>
-  </tr>
+<div class="login-box">
+    <h1>Complus</h1>
+    <p>‡∏™‡∏°‡∏±‡∏Ñ‡∏£‡∏™‡∏°‡∏≤‡∏ä‡∏¥‡∏Å‡πÄ‡∏û‡∏∑‡πà‡∏≠‡πÉ‡∏ä‡πâ‡∏á‡∏≤‡∏ô‡∏£‡∏∞‡∏ö‡∏ö</p>
 
-  <!-- BANNER -->
-  <tr>
-    <th height="209" colspan="7" align="left"> <a href="index.html"><img src="img/ban.jpg" width="1536" height="300" /></a>
-    </th>
-  </tr>
+    <input type="text" id="fullname" placeholder="‡∏ä‡∏∑‡πà‡∏≠ - ‡∏™‡∏Å‡∏∏‡∏•">
 
-  <!-- NAVBAR -->
-  <tr>
-    <td height="38" bgcolor="#000000">&nbsp;</td>
-    <td align="center" bgcolor="#000000"><a class="nav-link" href="Analyze.html">«‘‡§√“–ÀÏ ‡ª§§Õ¡</a></td>
-    <td align="center" bgcolor="#000000"><a class="nav-link" href="Gametest.html">«‘‡§√“–ÀÏ‡°¡</a></td>
-    <td align="center" bgcolor="#000000">∂“¡ AI</td>
-    <td align="center" bgcolor="#000000">‡ª√’¬∫‡∑’¬∫ ‡ª§</td>
-    <td align="center" bgcolor="#000000">‚ª√‰ø≈Ï</td>
-    <td align="center" bgcolor="#000000">≈ÁÕ§Õ‘π</td>
-  </tr>
+    <input type="text" id="phone" placeholder="‡πÄ‡∏ö‡∏≠‡∏£‡πå‡πÇ‡∏ó‡∏£‡∏®‡∏±‡∏û‡∏ó‡πå">
 
-  <!-- MAIN TITLE -->
-  <tr>
-    <td height="148" colspan="7" align="center" bgcolor="#0F0D0D">
-        <p class="Big-title"> ¡—§√ ¡“™‘°</p>
-        <form id="form1" name="form1" method="post" action="">
-          <label for="textfield">™◊ËÕ- °ÿ≈</label>
-          <input type="text" name="textfield" id="textfield" />
-        </form>
-        <form id="form2" name="form2" method="post" action="">
-          <label for="textfield2">‡∫Õ√Ï</label>
-          <input type="text" name="textfield2" id="textfield2" />
-        </form>
-        <form id="form3" name="form3" method="post" action="">
-          <label for="select">™Ë«ßÕ“¬ÿ</label>
-          <select name="select" id="select">
-            <option>15</option>
-            <option>16</option>
-            <option>17</option>
-            <option>18</option>
-            <option>19</option>
-            <option>20</option>
-          </select>
-        </form>
-        <p class="Big-title">&nbsp;</p>
-    </td>
-  </tr>
+    <select id="age">
+        <option value="">‡∏ä‡πà‡∏ß‡∏á‡∏≠‡∏≤‡∏¢‡∏∏</option>
+        <option>15</option>
+        <option>16</option>
+        <option>17</option>
+        <option>18</option>
+        <option>19</option>
+        <option>20+</option>
+    </select>
+	
+	<label style="display:flex;align-items:center;gap:10px;
+              font-size:16px;color:#ccc;margin-bottom:15px;">
+    <input type="checkbox" id="rememberMe">
+    ‡∏ö‡∏±‡∏ô‡∏ó‡∏∂‡∏Å‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•‡πÑ‡∏ß‡πâ‡πÉ‡∏ô‡πÄ‡∏Ñ‡∏£‡∏∑‡πà‡∏≠‡∏á‡∏ô‡∏µ‡πâ
+</label>
 
-  <!-- SUBTITLE -->
-  <tr>
-    <td colspan="7" align="center" bgcolor="#0F0D0D">&nbsp;</td>
-  </tr>
 
-  <!-- BUTTONS -->
-  <tr>
-    <td colspan="7" align="center" bgcolor="#0F0D0D" style="padding-top:20px; padding-bottom:20px;">
-    </td>
-  </tr>
+    <button class="gold-btn" onclick="login()">‡πÄ‡∏Ç‡πâ‡∏≤‡∏™‡∏π‡πà‡∏£‡∏∞‡∏ö‡∏ö</button>
 
-  <!-- FEATURE CARDS -->
-  <tr>
-    <td colspan="7" bgcolor="#0F0D0D">
+    <div class="login-link">
+        ‡∏°‡∏µ‡∏ö‡∏±‡∏ç‡∏ä‡∏µ‡∏≠‡∏¢‡∏π‡πà‡πÅ‡∏•‡πâ‡∏ß? <a href="index.html">‡πÄ‡∏Ç‡πâ‡∏≤‡∏™‡∏π‡πà‡∏£‡∏∞‡∏ö‡∏ö‡πÅ‡∏ö‡∏ö Guest</a>
+    </div>
+</div>
 
-       
-
-        </div>
-
-    </td>
-  </tr>
-
-  <!-- FOOTER -->
-  <tr>
-    <td colspan="7" bgcolor="#000000" align="center">
-        <marquee behavior="alternate">®—¥∑”‚¥¬ π“¬µ</marquee>
-    </td>
-  </tr>
-
-</table>
+</div>
 
 </body>
 </html>

@@ -1,68 +1,109 @@
-const GAME_DEMAND = {
-    gtav:      { name: "GTA V", demand: 90 },
-    valorant:  { name: "Valorant", demand: 40 },
-    pubg:      { name: "PUBG", demand: 100 },
-    cyberpunk: { name: "Cyberpunk 2077", demand: 150 },
-    rdr2:      { name: "RDR2", demand: 145 }
-};
+// ===============================
+// Game Test Engine (Heuristic)
+// ===============================
 
-const GRAPHIC_MULT = {
-    low: 1.2,
-    medium: 1.0,
-    high: 0.8,
-    ultra: 0.6
+// ความกินสเปคของแต่ละเกม (ยิ่งสูงยิ่งหนัก)
+const GAME_LOAD = {
+    gtav: 75,
+    valorant: 40,
+    pubg: 85,
+    cyberpunk: 120,
+    rdr2: 110
 };
 
 function testGame(){
-    let gameKey = document.getElementById("game").value;
-    let graphic = document.getElementById("graphic").value;
 
-    let cpu = parseInt(document.getElementById("cpu").value);
-    let gpu = parseInt(document.getElementById("gpu").value);
-    let ram = parseInt(document.getElementById("ram").value);
-    let res = parseInt(document.getElementById("resolution").value);
+    const game = document.getElementById("game").value;
+    const graphic = document.getElementById("graphic").value;
+    const resolution = parseInt(document.getElementById("resolution").value);
 
-    let box = document.getElementById("gameResult");
+    let cpu, gpu, ram;
 
-    if(!gameKey || !cpu || !gpu || !ram){
-        box.innerHTML = "⚠ กรุณากรอกข้อมูลให้ครบ";
+    // 🔥 ดึงสเปคจาก Analyze ก่อน
+    const spec = getSpec();
+
+    if(spec){
+        cpu = spec.cpuScore;
+        gpu = spec.gpuScore;
+        ram = spec.ram;
+    }else{
+        // fallback: ให้กรอกเอง
+        cpu = parseInt(document.getElementById("cpu").value);
+        gpu = parseInt(document.getElementById("gpu").value);
+        ram = parseInt(document.getElementById("ram").value);
+    }
+
+    const box = document.getElementById("gameResult");
+
+    if(!game || !cpu || !gpu || !ram){
+        box.innerHTML = "⚠ กรุณาเลือกเกม และกรอก/วิเคราะห์สเปคก่อน";
         return;
     }
 
-    let base = cpu + gpu;
+    // ---- คำนวณ FPS ----
+    const GAME_LOAD = {
+        gtav: 75,
+        valorant: 40,
+        pubg: 85,
+        cyberpunk: 120,
+        rdr2: 110
+    };
 
-    // RAM bonus
-    if(ram >= 32) base += 25;
-    else if(ram >= 16) base += 15;
-    else if(ram >= 8) base += 5;
-    else base -= 10;
+    let presetMul =
+        graphic === "low" ? 0.7 :
+        graphic === "medium" ? 0.9 :
+        graphic === "high" ? 1.1 : 1.3;
 
-    // Resolution multiplier
-    let r = (res === 1080 ? 1 : res === 1440 ? 0.75 : 0.5);
+    let resMul =
+        resolution === 1440 ? 0.75 :
+        resolution === 2160 ? 0.5 : 1;
 
-    // FPS คำนวณจริง
-    let fps = Math.round((base / GAME_DEMAND[gameKey].demand) * 60 * GRAPHIC_MULT[graphic] * r);
+    let ramMul = ram >= 16 ? 1 : ram >= 8 ? 0.85 : 0.65;
 
-    if(fps < 5) fps = 5;
-    if(fps > 240) fps = 240;
+    let fps = Math.round(
+        ((cpu * 0.45 + gpu * 0.55) / GAME_LOAD[game]) * 60
+        * presetMul * resMul * ramMul
+    );
 
-    let comment =
-        fps >= 120 ? "🔥 ลื่นระดับ eSport" :
-        fps >= 60  ? "✔ ลื่นดี" :
-        fps >= 30  ? "🙂 พอเล่นได้" :
-                     "⚠ หน่วงมาก";
+    fps = Math.max(10, Math.min(fps, 240));
+
+    let feel =
+        fps >= 120 ? "🔥 โคตรลื่น" :
+        fps >= 60 ? "✅ ลื่นดี" :
+        fps >= 30 ? "🙂 พอเล่นได้" :
+        "⚠️ หน่วงมาก";
 
     box.innerHTML = `
-        <h2>ผลวิเคราะห์เกม</h2>
-        เกม: <b>${GAME_DEMAND[gameKey].name}</b><br>
-        กราฟิก: <b>${graphic.toUpperCase()}</b><br><br>
-        FPS โดยประมาณ: <b style="color:#FFD700">${fps} FPS</b><br><br>
-        💡 สรุปผล: ${comment}
+        <h2>ผลการทดสอบเกม</h2>
+        เกม: <b>${game.toUpperCase()}</b><br>
+        กราฟิก: ${graphic.toUpperCase()}<br>
+        ความละเอียด: ${resolution}p<br><br>
+        FPS โดยประมาณ: <b>${fps}</b><br>
+        ความรู้สึก: <b>${feel}</b>
     `;
-	
-	localStorage.setItem(
- "gameCount",
- (parseInt(localStorage.getItem("gameCount")||0)+1)
-);
-
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    // ดึงสเปคจาก Analyze
+    const spec = getSpec();
+    if(!spec) return;
+
+    // ใส่ค่าเริ่มต้น (ยังแก้ไขได้)
+    const cpuInput = document.getElementById("cpu");
+    const gpuInput = document.getElementById("gpu");
+    const ramInput = document.getElementById("ram");
+
+    if(cpuInput && !cpuInput.value){
+        cpuInput.value = spec.cpuScore;
+    }
+
+    if(gpuInput && !gpuInput.value){
+        gpuInput.value = spec.gpuScore;
+    }
+
+    if(ramInput && !ramInput.value){
+        ramInput.value = spec.ram;
+    }
+});
+

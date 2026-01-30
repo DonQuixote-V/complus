@@ -6,6 +6,8 @@
 
 <!-- เรียกไฟล์ CSS -->
 <link rel="stylesheet" href="css/style.css" />
+<script src="js/authGuard.js"></script>
+<script src="js/specStore.js"></script>
 
 <style type="text/css">
 body,td,th {
@@ -70,7 +72,7 @@ a:active {
 
 <body>
 
-<table width="1541" border="1">
+<table width="1541" border="0">
   <tr bgcolor="#333333">
     <th height="37" colspan="7" bgcolor="#666666" scope="col">
       <marquee behavior="alternate">Mywebsite By Ruti</marquee>
@@ -86,12 +88,11 @@ a:active {
   <!-- Navbar -->
   <tr>
     <td width="13" bgcolor="#000000">&nbsp;</td>
-    <td width="393" align="center" bgcolor="#000000"><a href="Analyze.html">วิเคราะห์สเปคคอม</a></td>
-    <td width="264" align="center" bgcolor="#000000"><a href="Gametest.html">วิเคราะห์เกม</a></td>
-    <td width="170" align="center" bgcolor="#000000"><a href="AskAI.html">ถาม AI</a></td>
-    <td width="318" align="center" bgcolor="#000000"><a href="Compare.html">เปรียบเทียบสเปค</a></td>
-    <td width="174" align="center" bgcolor="#000000"><a href="Profile.html">โปรไฟล์</a></td>
-    <td width="168" align="center" bgcolor="#000000"><a href="login.html">ล็อคอิน</a></td>
+    <td align="center"><a class="nav-link" href="Analyze.html">วิเคราะห์สเปคคอม</a></td>
+  <td align="center"><a class="nav-link" href="Gametest.html">วิเคราะห์เกม</a></td>
+  <td align="center"><a class="nav-link" href="AskAI.html">ถาม AI</a></td>
+  <td align="center"><a class="nav-link" href="Compare.html">เปรียบเทียบสเปค</a></td>
+  <td align="center"><a class="nav-link" href="Profile.html">โปรไฟล์</a></td>
   </tr>
 
   <!-- หัวข้อ -->
@@ -107,19 +108,19 @@ a:active {
     <td colspan="7" align="center" valign="top" bgcolor="#0F0D0D">
         <br /><br />
 
-        <select id="cpu" class="input-box">
-            <option value="">เลือก CPU</option>
-            <option value="60">Intel i5-12400F</option>
-            <option value="40">Intel i7-8700</option>
-            <option value="55">Ryzen 5 5600</option>
-        </select>
+        <input type="text" id="cpuInput" class="input-box"
+		list="cpuList"
+		placeholder="เช่น Intel i5-12400F">
 
-        <select id="gpu" class="input-box">
-            <option value="">เลือก GPU</option>
-            <option value="35">GTX 1650</option>
-            <option value="70">RTX 3060</option>
-            <option value="65">RX 6600</option>
-        </select>
+		<datalist id="cpuList"></datalist>
+
+
+        <input type="text" id="gpuInput" class="input-box"
+		list="gpuList"
+		placeholder="เช่น RTX 3060">
+
+		<datalist id="gpuList"></datalist>
+
 
         <br /><br />
 

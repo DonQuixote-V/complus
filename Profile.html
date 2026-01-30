@@ -2,9 +2,10 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>ล็อกอิน | Complus</title>
+<title>โปรไฟล์ | Complus</title>
 
 <link rel="stylesheet" href="css/style.css">
+<script src="js/authGuard.js"></script>
 
 <style>
 body{
@@ -14,78 +15,148 @@ body{
     font-family:"VCR OSD Mono";
 }
 
-/* กล่องล็อกอิน */
-.login-box{
-    width:420px;
-    margin:120px auto;
+/* กล่องโปรไฟล์ */
+.profile-box{
+    width:600px;
+    margin:60px auto;
     background:#111;
     padding:40px;
     border-radius:18px;
-    text-align:center;
     border:1px solid #222;
 }
 
-.login-box h1{
-    margin-bottom:10px;
-    font-size:38px;
-}
-
-.login-box p{
-    color:#bbb;
+.profile-box h1{
+    text-align:center;
+    font-size:42px;
     margin-bottom:25px;
 }
 
-/* input */
-.login-box input{
-    width:100%;
-    padding:14px;
-    font-size:18px;
-    margin-bottom:20px;
-    border-radius:14px;
-    border:2px solid #0b3f66;
-    background:#1a1a1a;
-    color:white;
-    outline:none;
+.profile-row{
+    font-size:20px;
+    margin:12px 0;
 }
 
-.login-box input:focus{
-    border-color:#0d6efd;
-    box-shadow:0 0 10px rgba(13,110,253,0.5);
+.profile-row span{
+    color:#00e1ff;
+}
+
+/* ปุ่ม */
+.profile-actions{
+    text-align:center;
+    margin-top:30px;
+}
+
+.profile-actions button{
+    margin:10px;
 }
 </style>
-
-<script>
-function login(){
-    let name = document.getElementById("username").value.trim();
-    if(name === ""){
-        alert("กรุณาใส่ชื่อผู้ใช้");
-        return;
-    }
-
-    // บันทึกชื่อ
-    localStorage.setItem("username", name);
-
-    // ไปหน้าโปรไฟล์
-    window.location.href = "Profile.html";
-}
-</script>
-
 </head>
 
 <body>
 
-<div class="login-box">
-    <h1>Complus</h1>
-    <p>เข้าสู่ระบบเพื่อใช้งานเต็มรูปแบบ</p>
+<table width="1541" border="0">
 
-    <input type="text" id="username" placeholder="ชื่อผู้ใช้">
+<!-- TOP BAR -->
+<tr bgcolor="#666">
+<td colspan="7" align="center">
+<marquee>Mywebsite By Ruti</marquee>
+</td>
+</tr>
 
-    <button class="gold-btn" onclick="login()">เข้าสู่ระบบ</button>
+<!-- BANNER -->
+<tr>
+<td colspan="7">
+<a href="index.html">
+<img src="img/ban.jpg" width="1536" height="300">
+</a>
+</td>
+</tr>
 
-    <p style="margin-top:20px;color:#666;">
-        ยังไม่สมัคร? ใช้งานแบบ Guest ได้
-    </p>
+<!-- NAVBAR -->
+<tr bgcolor="#000000">
+<td>&nbsp;</td>
+<td align="center"><a class="nav-link" href="Analyze.html">วิเคราะห์สเปคคอม</a></td>
+<td align="center"><a class="nav-link" href="Gametest.html">วิเคราะห์เกม</a></td>
+<td align="center"><a class="nav-link" href="AskAI.html">ถาม AI</a></td>
+<td align="center"><a class="nav-link" href="Compare.html">เปรียบเทียบสเปค</a></td>
+<td align="center"><b>โปรไฟล์</b></td>
+</tr>
+
+<!-- CONTENT -->
+<tr>
+<td colspan="7" bgcolor="#0F0D0D">
+
+<div class="profile-box">
+
+<h1>โปรไฟล์ผู้ใช้</h1>
+
+<div class="profile-row">
+ชื่อผู้ใช้: <span id="p_username">-</span>
 </div>
+
+<div class="profile-row">
+สถานะ: <span id="p_role">-</span>
+</div>
+
+<div class="profile-row">
+เข้าสู่ระบบล่าสุด: <span id="p_login">-</span>
+</div>
+
+<hr style="margin:25px 0; border-color:#222;">
+
+<div class="profile-row">
+สเปคเครื่องล่าสุด:
+<div id="p_spec" style="margin-top:10px;color:#ccc;font-size:18px;">
+ยังไม่มีข้อมูลสเปค
+</div>
+</div>
+
+<div class="profile-actions">
+<button class="gold-btn" onclick="logout()">ออกจากระบบ</button>
+</div>
+
+</div>
+
+</td>
+</tr>
+
+<!-- FOOTER -->
+<tr bgcolor="#000000">
+<td colspan="7" align="center">
+<marquee>จัดทำโดย นายต</marquee>
+</td>
+</tr>
+
+</table>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    // ดึงจาก local ก่อน ถ้าไม่มีค่อยดู session
+    let userData =
+        JSON.parse(localStorage.getItem("userData")) ||
+        JSON.parse(sessionStorage.getItem("userData"));
+
+    if(userData){
+        document.getElementById("p_username").innerText = userData.username;
+        document.getElementById("p_role").innerText = userData.role;
+        document.getElementById("p_login").innerText = userData.loginAt;
+    }else{
+        window.location.href = "login.html";
+    }
+});
+
+function logout(){
+    localStorage.removeItem("username");
+    localStorage.removeItem("userData");
+    localStorage.removeItem("rememberMe");
+
+    sessionStorage.clear();
+
+    window.location.href = "login.html";
+}
+</script>
+
 
 </body>
 </html>
